@@ -242,8 +242,8 @@ impl Amount {
     pub const ZERO: Amount = Amount(0);
     /// Exactly one piconero.
     pub const ONE_PICO: Amount = Amount(1);
-    /// Exactly one monero.
-    pub const ONE_XMR: Amount = Amount(1_000_000_000_000);
+    /// Exactly one beldex.
+    pub const ONE_BDX: Amount = Amount(1_000_000_000);
 
     /// Create an [`Amount`] with piconero precision and the given number of piconero.
     pub fn from_pico(piconero: u64) -> Amount {
@@ -510,7 +510,7 @@ impl SignedAmount {
     /// Exactly one piconero.
     pub const ONE_PICO: SignedAmount = SignedAmount(1);
     /// Exactly one monero.
-    pub const ONE_XMR: SignedAmount = SignedAmount(1_000_000_000_000);
+    pub const ONE_BDX: SignedAmount = SignedAmount(1_000_000_000);
 
     /// Create an [`SignedAmount`] with piconero precision and the given number of piconeros.
     pub fn from_pico(piconero: i64) -> SignedAmount {
@@ -1504,8 +1504,8 @@ mod tests {
     fn to_string() {
         use super::Denomination as D;
 
-        assert_eq!(Amount::ONE_XMR.to_string_in(D::Monero), "1.000000000000");
-        assert_eq!(Amount::ONE_XMR.to_string_in(D::Piconero), "1000000000000");
+        assert_eq!(Amount::ONE_BDX.to_string_in(D::Monero), "1.000000000000");
+        assert_eq!(Amount::ONE_BDX.to_string_in(D::Piconero), "1000000000000");
         assert_eq!(Amount::ONE_PICO.to_string_in(D::Monero), "0.000000000001");
         assert_eq!(
             SignedAmount::from_pico(-42).to_string_in(D::Monero),
@@ -1513,11 +1513,11 @@ mod tests {
         );
 
         assert_eq!(
-            Amount::ONE_XMR.to_string_with_denomination(D::Monero),
+            Amount::ONE_BDX.to_string_with_denomination(D::Monero),
             "1.000000000000 xmr"
         );
         assert_eq!(
-            SignedAmount::ONE_XMR.to_string_with_denomination(D::Piconero),
+            SignedAmount::ONE_BDX.to_string_with_denomination(D::Piconero),
             "1000000000000 piconero"
         );
         assert_eq!(
